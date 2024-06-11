@@ -1,0 +1,83 @@
+<div class="login">
+  <div class="login-container">
+    
+    <div class="login-bg"></div>
+      <div class="form-side"> 
+        <img src="/assets/img/logo.png" alt="" width="120px" height="120px">  
+  
+        <form class="login-form" [formGroup]="signupForm" (ngSubmit)="registerUser()" style="position: relative;">
+         <div class="row">
+ 
+              <h4 class="form-title">Dados Pessoais</h4>
+              <div class="registar-form-row">
+                    <div class="registar-form-group">
+                      <!-- <label for="">Descrição</label> -->
+                      <input class="form-control" type="text" placeholder="Nome" formControlName="name" required autocomplete="name"
+                      [ngClass]="{ 'is-invalid': submitted && f.name.errors, 'is-valid': f.name.touched && !f.name.errors }">
+                      <!-- <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                        <div *ngIf="f['name'].errors.required">O campo Nome é obrigatório</div>
+                      </div> -->
+                    </div>
+                    <div class="registar-form-group">
+                      <!-- <label for="">Descrição</label> -->
+                      <input class="form-control" type="number" placeholder="Telefone" formControlName="telefone" required autocomplete="name"
+                      [ngClass]="{ 'is-invalid': submitted && f.telefone.errors, 'is-valid': f.telefone.touched && !f.name.errors }">
+                      <!-- <div *ngIf="submitted && f['telefone'].errors" class="invalid-feedback">
+                        <div *ngIf="f['telefone'].errors.required">O campo Telefone é obrigatório</div>
+                      </div> -->
+                    </div>
+              </div>
+              <div class="registar-form-group">
+                <!-- <label for="">Descrição</label> -->
+                <input class="form-control" type="email" placeholder="Email" formControlName="email" required autocomplete="email"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'is-valid': f.email.touched && !f.email.errors }">
+                <!-- <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                  <div *ngIf="f['email'].errors.required">O campo Email é obrigatório</div>
+                </div> -->
+              </div>    
+              
+              <h4 class="form-title">Credenciais</h4>
+              <div class="registar-form-row">         
+                  <div class="registar-form-group">
+                    <!-- <label for="">Descrição</label> -->
+                    <input class="form-control" type="password" placeholder="senha" autocomplete="current-password" formControlName="password" required
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors, 'is-valid': f.password.touched && !f.password.errors }">
+                    <!-- <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                      <div *ngIf="f['password'].errors.required">O campo Password é obrigatório</div>
+                    </div> -->
+                </div>      
+
+                  <div class="registar-form-group">
+                    <!-- <label for="">Descrição</label> -->
+                    <input class="form-control" type="password" placeholder="Repetir senha" autocomplete="current-password" formControlName="confirmpassword" required
+                    [ngClass]="{ 'is-invalid': submitted && f.confirmpassword.errors, 'is-valid': f.confirmpassword.touched && !f.confirmpassword.errors }">
+                    <!-- <div *ngIf="submitted && f['confirmpassword'].errors" class="invalid-feedback">
+                      <div *ngIf="f['confirmpassword'].errors.required">O campo Password é obrigatório</div>
+                    </div> -->
+                  </div>
+
+                </div>
+          </div>
+          <div class="row">
+            <!-- <button class="btnLogin"  data-toggle="modal"
+           type="submit" [class.optionalBtn]="this.signupForm.pristine || this.signupForm.invalid" [disabled]="this.signupForm.pristine || this.signupForm.invalid">Seguinte</button> -->
+            <button class="btnLogin"  data-toggle="modal"
+            (click)="sendCodeToPhone()" [class.optionalBtn]="this.signupForm.pristine || this.signupForm.invalid" [disabled]="this.signupForm.pristine || this.signupForm.invalid">Seguinte</button>
+          </div>
+    
+          <!-- <div class="row help-password" style="border: 1px solid #fff;margin-top: 10px; border-radius: 4px;"> 
+            <div class="col-md-4">
+              <label class="rememberme"> 
+                <a  routerLink="/login" routerLinkActive="active" class="forget-password">Entrar</a>
+              </label>
+            </div> 
+          </div>   -->
+        </form>
+    
+        <!-- <div class="copyright">
+          <p>2023 - 2024 Play Sync | Todos os Direitos Reservados</p>
+        </div> -->
+      </div>    
+  </div>
+</div>
+<app-verify-code [is_modal]="true" [telephone]="telephone" [password]="password" *ngIf="showModal == 2"></app-verify-code>

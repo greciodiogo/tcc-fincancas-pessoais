@@ -1,0 +1,91 @@
+<div class="dashboard">
+
+    <div class="cards-wrapper">
+      <div class="dashboard-title">
+        Meu Dashboard 💳
+      </div>
+      <div class="full-width">
+        <app-dashboard-home></app-dashboard-home>
+      </div>
+        
+      <div class="slideshow-container">
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <div class="slide" [class.active]="false">
+              <div class="dashboard-title">
+                {{ transactionData?.data?.length > 0 ? 'Últimos' : 'Sem'}} Movimentos
+              </div>
+              <div class="transactions-container"  *ngIf=" transactionData?.data?.length > 0">
+                <app-transaction-full [largeSize]="true"
+                (handleEdit)="handleEditTransaction($event)"
+                ></app-transaction-full>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide *ngIf="transactionData?.data?.length > 0">
+            <div class="slide" [class.active]="true">
+              <div class="dashboard-title font-sm">
+                Estatística
+              </div>
+              <div class="grafico-left">
+                <app-grafico [dashboard]="this.dashboard"></app-grafico>
+              </div>
+              <div class="contorno-bottom"></div>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+    </div>
+    
+  </div>
+
+    <div class="feature-side">
+      
+      <div class="feature-container">
+
+        <div class="user-details">
+          <div class="user-details-container">
+            <div class="user-details-avatar">
+              <i class="fa fa-home">
+                <img width="70" *ngIf="this.authenticated?.user?.id==1" height="70" src="../../../../../../assets/img/Grécio_Diogo.png" alt="">
+                <img width="70" *ngIf="this.authenticated?.user?.id!=1" height="70" src="https://avatar.iran.liara.run/username?username={{ this.authenticated?.user?.nome || 'unknown'}}" alt="">
+
+              </i>
+            </div>
+            <span class="user-details-title">cartão virtual</span>
+            <h5 class="user-name">{{ this.authenticated?.user?.nome || 'unknown'}}</h5>
+          </div>
+        </div>
+
+        <div class="services-container">
+         <app-menu-item iconeTitle="income.png" itemTitle="Receber" (click)="toggleRecieveBtn(1)"></app-menu-item>
+         <app-menu-item iconeTitle="withdraw.png" itemTitle="Retirar" (click)="toggleRecieveBtn(2)"></app-menu-item>
+         <app-menu-item iconeTitle="money.png" itemTitle="Finanças" (click)="toggleMultpileTransaction()"></app-menu-item>
+         <app-menu-item iconeTitle="document-file.png" itemTitle="Histórico"></app-menu-item>
+        </div>
+
+        <app-credit-card
+          [totalDisponivel]="totalDisponivel"
+          cardTitle="Angola Kwanza"
+        ></app-credit-card>
+
+        <app-money-control-form [formType]="formType" [activePosition]="activePosition" (close)="onClose()"></app-money-control-form>
+      </div>
+      
+      
+      <div class="dashboard-title sc-color" *ngIf="transactionData?.data?.length > 0">
+        Últimos Movimentos
+      </div>
+      <app-transaction [transaction]="lastTransaction" *ngIf="transactionData?.data?.length > 0"></app-transaction>
+
+      <div class="transactions see-all" *ngIf=" transactionData?.data?.length > 0">
+        <button>
+          Ver todos Movimentos
+          <span>→</span>
+        </button>
+      </div>
+    
+    </div>
+   
+</div>
+
+<app-multiple-transaction-form [activePosition]="activeMultipleTransactionForm" (close)="onCloseModal()" (loadList)="this.findAllTransactions()"></app-multiple-transaction-form>
