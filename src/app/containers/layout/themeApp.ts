@@ -21,16 +21,3 @@ export interface Theme {
 }
 
 
-export const loadtheme = (name): string => {
-  const apps = [
-    {
-      name: 'MOVICEL',
-      style: 'theme/movicel.component.css',
-    },
-    {
-      name: 'AT',
-      style: 'theme/at.component.css',
-    },
-  ];
-  return apps.find((app) => app.name === name).style;
-};

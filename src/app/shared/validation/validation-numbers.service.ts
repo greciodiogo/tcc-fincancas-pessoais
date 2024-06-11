@@ -153,28 +153,6 @@ export class ValidationNumbersService {
     return true;
   }
 
-  validarNumeroTelefoneMovicel(evt) {
-    var theEvent = evt || window.event;
-    var key = theEvent.keyCode || theEvent.which;
-    var codigoTeclaPressionado = (evt.which) ? evt.which : theEvent.keyCode
-    key = String.fromCharCode(key);
-    const tamanho=evt.target.value.replace(/ /g, '').split("_")[0].length
-    if (!this.regexNumero.test(key)) {
-      return false
-    }
-    
-    //não aceita numero diferente de 9 Na Primeira Posição
-    if ( tamanho == 0 && Number(key) != 9) {
-      return false;
-    }
-    
-    //não aceita numero diferente de 1 e 9 Na segunda posicao Posição
-    if (tamanho == 1 && Number(key) != 9 && Number(key) != 1 ) {
-      return false;
-    }
-
-    return true;
-  }
 
   validarNumeroTelefone(evt) {
     var theEvent = evt || window.event;
