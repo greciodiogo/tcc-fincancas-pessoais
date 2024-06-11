@@ -48,7 +48,6 @@
               "src/assets/plugins/jquery/jquery.min.js",
               "node_modules/izitoast/dist/js/iziToast.min.js",
               "src/assets/plugins/bootstrap/js/bootstrap.bundle.min.js",
-              "src/assets/js/adminlte.min.js",
               "src/assets/js/demo.js"
             ],
             "vendorChunk": true,
