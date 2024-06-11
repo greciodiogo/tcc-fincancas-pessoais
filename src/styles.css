@@ -1,0 +1,19 @@
+@import '~ngx-toastr/toastr';
+
+*{
+    margin: 0;
+    padding: 0;
+    border: none; outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+:root {
+  --mainColor: #771F98;
+  /* --sc-bg: #020c17; */
+  --detailed: #993F3F;
+  --sc-bg: rgb(37 81 88 / 60%);
+  --details-color: #771F98;
+  ;
+  --tc: rgba(2, 2, 2, 0.723);
+}
