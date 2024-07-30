@@ -9,7 +9,6 @@
 
 .dashboard{
   width: 100%;
-  padding: 1rem;
   display: flex;
   gap: 30px;
   justify-content: center;
@@ -282,4 +281,21 @@
   flex-direction: column;
   justify-content: flex-start;
   gap: 10px;
+}
+
+.label_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.label_container h1 {
+  font-size: 42px;
+  font-weight: 600;
+  color: #15283c;
+}
+.label_container h1 span {
+  color: #ff5722;
 }

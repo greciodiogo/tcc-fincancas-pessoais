@@ -320,7 +320,7 @@ a.btn {
 }
 
 .padding_infor_info {
-    padding: 35px 35px;
+    padding: 0 35px;
     float: left;
     width: 100%;
 }
@@ -652,8 +652,8 @@ a:focus {
     left: 0;
 }
 
-#sidebar.active+#content .topbar {
-    padding-left: 90px;
+.topbar {
+    /* padding-left: 90px; */
 }
 
 .topbar .navbar {
@@ -1350,13 +1350,13 @@ a[data-toggle="collapse"] {
 }
 
 .progress.skill-bar .progress-bar {
-    background-color: #1ed085;
+    background-color: #ff5722;
     box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15);
 }
 
 .skill {
     font-size: 14px;
-    color: #455a64;
+    color: white;
     margin-top: 20px;
     font-weight: 500;
 }
@@ -3434,4 +3434,64 @@ table.projects tr td:first-child {
 #map {
     height: 100%;
     min-height: 720px;
+}
+
+#chart {
+    max-width: 650px;
+    margin: 35px auto;
+  }
+
+  .orange_c {
+    background-color: #ff5722;
+  }
+
+  .dark_bg {
+    background-color: #15283c;
+    box-shadow: 0rem 1rem 2rem rgb(0, 0, 0, .3);  
+}
+
+.col-lg-8 .white_shd,
+.col-lg-7 .white_shd {
+    box-shadow: 0rem 1rem 2rem rgb(0, 0, 0, .3);  
+}
+
+.report_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.report_item:hover {
+    opacity: .8;
+    transform: scale(1.02);
+}
+
+.report_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.report_item .picture{
+    width: 45px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+}
+
+.report_item .picture img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.report_item .content{
+    padding: 10px;
+    /* text-align: center; */
+    color: white;
+    opacity: .75;
+
 }

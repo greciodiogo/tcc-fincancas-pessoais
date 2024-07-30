@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AuthGuard} from '@core/security/guards/auth.guard'
 import {PermissionGuard} from '@core/security/guards/permission.guard'
-import { ChatMessageComponent } from './pages/chat-message/chat-message.component';
+import { MoneyControlFormComponent } from './pages/money-control-form.component';
 
 const routes: Routes = [
   {
-    path: 'chat-message',
-    component: ChatMessageComponent,
+    path: 'transacao',
+    component: MoneyControlFormComponent,
     canActivate: [AuthGuard, PermissionGuard],
     data: {
-      title: "Chat Message",
+      title: "Transações",
       expectedPermission: "dashboard",
       layout:{
         customLayout: true,
@@ -24,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ChatMessageRoutingModule {}
+export class RealizarTransacaoRoutingModule {}

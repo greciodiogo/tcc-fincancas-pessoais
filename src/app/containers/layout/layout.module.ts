@@ -15,6 +15,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ScreenModule } from './screen/screen.module';
 import { FaqHelperModule } from './faq-helper/faq-helper.module';
 import { MenuSidebarModule } from './menu-sidebar/menu-sidebar.module';
+import { HeaderModule } from './header/header.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -23,6 +24,7 @@ import { MenuSidebarModule } from './menu-sidebar/menu-sidebar.module';
     ModalModule.forRoot(), 
   ],
   exports: [
+    HeaderModule,
     FooterModule,
     MenuSidebarModule,
     ScreenModule,

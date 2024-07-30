@@ -27,17 +27,16 @@ export class FnService {
 
   public numberFormat(number) {
     const appDefaultMoeda = localStorage.getItem('accessToken');
-    const { defaultMoeda } = JSON.parse(appDefaultMoeda)
-    switch(defaultMoeda){
-      case 'EUR':
-        return new Intl.NumberFormat('de-DE', {
-          style: 'currency',
-          currency: 'USD',
-        })
-          .format(number*0.00121)
-          .replace('€', '')
-          .trim();
-      case 'AOA':
+    // const { defaultMoeda } = JSON.parse(appDefaultMoeda)
+    // switch(defaultMoeda){
+    //   case 'EUR':
+    //     return new Intl.NumberFormat('de-DE', {
+    //       style: 'currency',
+    //       currency: 'USD',
+    //     })
+    //       .format(number*0.00121)
+    //       .replace('€', '')
+    //       .trim();}
         return new Intl.NumberFormat('de-DE', {
           style: 'currency',
           currency: 'EUR',
@@ -45,7 +44,7 @@ export class FnService {
           .format(number)
           .replace('€', '')
           .trim();
-    }
+    
   }
 
   getAmountConverted(fromCurrency: string, toCurrencies: string[],amount): Observable<any> {

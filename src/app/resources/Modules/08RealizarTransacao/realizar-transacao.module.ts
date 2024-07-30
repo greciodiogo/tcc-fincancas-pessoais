@@ -1,17 +1,17 @@
 import { BoxModule } from '../../../shared/components/box/box.module';
 import { NgModule } from '@angular/core';
-import { ChatMessageRoutingModule } from './chat-message-routing.module';
+import { RealizarTransacaoRoutingModule } from './realizar-transacao-routing.module';
 import { SharedMaterialModule } from '@app/shared/sharedMaterial.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BackdropBlurModule } from '@app/shared/components/backdrop-blur/backdrop-blur.module';
 import { SharedGlobalModule } from '@app/shared/sharedGlobal.module';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
-import { ChatMessageComponent } from './pages/chat-message/chat-message.component';
+import { MoneyControlFormComponent } from './pages/money-control-form.component';
 
 @NgModule({
   imports: [
-    ChatMessageRoutingModule,
+    RealizarTransacaoRoutingModule,
     BoxModule,
     SharedMaterialModule,
     FormsModule,
@@ -20,6 +20,6 @@ import { ChatMessageComponent } from './pages/chat-message/chat-message.componen
     SharedGlobalModule,
     NgbCarouselModule
   ],
-  declarations: [ ChatMessageComponent ]
+  declarations: [ MoneyControlFormComponent ]
 })
-export class ChatMessageModule { }
+export class RealizarTransacaoModule { }

@@ -29,17 +29,17 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute, 
   ) {
     if (this.auth.isAuthenticated()) {
-      this.redirectUser();
+      this.router.navigate(['/']);
     }
   }
- 
+
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
-
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     // get return url from route parameters or default to '/'
   }
 
@@ -62,22 +62,13 @@ export class LoginComponent implements OnInit {
       .pipe(first(), finalize(()=>{ this.loading = false; }))
       .subscribe(
         data => {
-          // this.router.navigate([this.returnUrl]);
+          window.location.replace(this.returnUrl);
           //location.reload();
-          this.redirectUser();
         },
         error => {
           //console.log('status',error);
           this.loading = false;
         });
   }
-
-  private redirectUser() {
-    if (this.auth.isAuthenticated() && this.auth.user.hasUserAccount) {
-      this.router.navigate(['/dashboard']);
-    } 
-    else if (this.auth.isAuthenticated() && !this.auth.user.hasUserAccount) 
-      this.router.navigate(['/user-panel']);
-    }
 
 }

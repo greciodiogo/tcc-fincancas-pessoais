@@ -6,9 +6,10 @@
 </ngx-spinner>
 
   <div class="wrapper {{!showSidebar ? 'hide_max_width' : ''}}">
-    <!-- <app-menu-sidebar *ngIf="showSidebar"></app-menu-sidebar> -->
+    <app-menu-sidebar *ngIf="showSidebar"></app-menu-sidebar>
 
     <div class="content-wrapper {{ layout.layoutNavigationTop?'content-wrapper-left': ''}}">
+    <app-header></app-header>
     <!-- <app-menu-header [themeApp]="themeApp" class="{{ layout.layoutNavigationTop?'content-wrapper-left': ''}}" *ngIf="layout.customLayout" [layoutNavigationTop]="layout.layoutNavigationTop" [authenticated]="auth"></app-menu-header> -->
       
       <section class="content" >

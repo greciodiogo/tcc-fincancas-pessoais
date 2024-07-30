@@ -1,54 +1,65 @@
-
-<div class="dashboard-painel">
-  <div class="dashboard-item">
-    <div class="dashboard-item-icon">
-      <span class="">
-        <i class="fa fa-home">
-          <img width="20" height="20" src="../../../../../../assets/img/sidebar/money-integral.png" alt="">
-        </i>
-      </span>
+<div class="row column1">
+    <div class="col-md-6 col-lg-3">
+       <div class="full counter_section margin_bottom_30">
+          <div class="couter_icon">
+             <div> 
+                <i class="fa fa-user yellow_color"></i>
+             </div>
+          </div>
+          <div class="counter_no">
+             <div>
+                <p class="total_no">{{ this.configService.numberFormat(dashboard.valorPoupancas || 0) }} AOA</p>
+                <p class="head_couter">Poupanças</p>
+             </div>
+          </div>
+       </div>
     </div>
-    <div class="dashboard-item-content">
-      <!-- <ngx-skeleton-loader *ngIf="dashboardService.loading" [theme]="{width: '200px', 'border-radius': '0', height: '17px',
-          'margin-bottom': '10px'}">
-      </ngx-skeleton-loader> -->
-      <span class="dashboard-item-label">Poupanças</span>
-        <span class="dashboard-item-price">{{ this.configService.numberFormat(dashboard.valorPoupancas || 0)
-          }} AOA</span>
+    <div class="col-md-6 col-lg-3">
+       <div class="full counter_section margin_bottom_30">
+          <div class="couter_icon">
+             <div> 
+                <i class="fa fa-clock-o blue1_color"></i>
+             </div>
+          </div>
+          <div class="counter_no">
+             <div>
+                <p class="total_no">{{ this.configService.numberFormat(dashboard.valorReceitas || 0)
+                }} AOA</p>
+                <p class="head_couter">Receitas</p>
+             </div>
+          </div>
+       </div>
     </div>
-  </div>
-  <div class="dashboard-item">
-    <div class="dashboard-item-icon">
-      <span class="">
-        <i class="fa fa-home">
-          <img width="20" height="20" src="../../../../../../assets/img/sidebar/money-income.png" alt="">
-        </i>
-      </span>
+    <div class="col-md-6 col-lg-3">
+       <div class="full counter_section margin_bottom_30">
+          <div class="couter_icon">
+             <div> 
+                <i class="fa fa-cloud-download green_color"></i>
+             </div>
+          </div>
+          <div class="counter_no">
+             <div>
+                <p class="total_no">{{ this.configService.numberFormat( dashboard.valorDespesas || 0)
+                }} AOA</p>
+                <p class="head_couter">Despesas</p>
+             </div>
+          </div>
+       </div>
     </div>
-    <div class="dashboard-item-content">
-      <!-- <ngx-skeleton-loader *ngIf="dashboardService.loading" [theme]="{width: '200px', 'border-radius': '0', height: '17px',
-          'margin-bottom': '10px'}">
-      </ngx-skeleton-loader> -->
-      <span class="dashboard-item-label">Receitas</span>
-        <span class="dashboard-item-price">{{ this.configService.numberFormat(dashboard.valorReceitas || 0)
-          }} AOA</span>
+    <div class="col-md-6 col-lg-3">
+       <div class="full counter_section margin_bottom_30">
+          <div class="couter_icon">
+             <div> 
+                <i class="fa fa-comments-o red_color"></i>
+             </div>
+          </div>
+          <div class="counter_no">
+             <div>
+                <p class="total_no">{{ this.configService.numberFormat( dashboard.valorReceitas || 0)
+                }} AOA</p>
+                <p class="head_couter">Total Arrecadado</p>
+             </div>
+          </div>
+       </div>
     </div>
-  </div>
-  <div class="dashboard-item">
-    <div class="dashboard-item-icon">
-      <span class="">
-        <i class="fa fa-home">
-          <img width="20" height="20" src="../../../../../../assets/img/sidebar/money-detail.png" alt="">
-        </i>
-      </span>
-    </div>
-    <div class="dashboard-item-content">
-      <!-- <ngx-skeleton-loader *ngIf="dashboardService.loading" [theme]="{width: '200px', 'border-radius': '0', height: '17px',
-          'margin-bottom': '10px'}">
-      </ngx-skeleton-loader> -->
-      <span class="dashboard-item-label">Despesas</span>
-        <span class="dashboard-item-price">{{ this.configService.numberFormat( dashboard.valorDespesas || 0)
-          }} AOA</span>
-    </div>
-  </div>
-</div>
+ </div>

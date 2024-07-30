@@ -8,7 +8,6 @@
         <th width="100">Movimento</th>
         <th width="100">Categoria</th>
         <th width="100">Estado</th>
-        <!-- <th width="100">Realizada Por</th> -->
         <th width="150">Data Movimento</th>
         <th width="140">Valor</th>
         <th width="20"></th>
@@ -37,9 +36,7 @@
         <td width="100" class="td-transactionType {{transaction?.categoria_id==1 && 'type-credit'}}">{{transaction?.categoria?.categoriaDescricao || '---' }}</td>
         <td width="100" class="transaction-category">{{ transaction?.transacaoTipo?.descricao || "---" }}</td>
         <td width="100" class="transaction-date">{{ transaction?.transacaoEstado?.descricao || '---' }}</td>
-        <!-- <td width="100" class="transaction-date">{{ this.authenticated?.user?.nome || 'unknown'}}</td> -->
-        <!-- <td width="150" class="transaction-date">{{ transaction?.transacao_author || '---' }}</td> -->
-        <td width="150" class="transaction-date">{{ transaction && transaction?.created_at }}</td>
+       <td width="150" class="transaction-date">{{ transaction && transaction?.created_at }}</td>
         <td width="120" class="transaction-price  {{transaction?.categoria_id==1 && 'transaction-credit'}}">
           <span>{{transaction?.categoria_id==1 ? '+' : '-'}}</span>  
           {{configService.formatNumber(transaction?.valor || 0) }}

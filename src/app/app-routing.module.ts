@@ -85,26 +85,46 @@ export const routes: Routes = [
   //       (m) => m.ContaConfigsModule
   //     ),
   // },
-  // {
-  //   path: '',
-  //   data: {
-  //     title: 'Histórico de Transações',
-  //   },
-  //   loadChildren: () =>
-  //     import('./resources/Modules/04Histórico-Transacoes/historico-transacoes.module').then(
-  //       (m) => m.HistoricoTransacoesModule
-  //     ),
-  // },
-  // {
-  //   path: '',
-  //   data: {
-  //     title: 'Chat Message',
-  //   },
-  //   loadChildren: () =>
-  //     import('./resources/Modules/05Chat-Message/chat-message.module').then(
-  //       (m) => m.ChatMessageModule
-  //     ),
-  // },
+  {
+    path: '',
+    data: {
+      title: 'Transações',
+    },
+    loadChildren: () =>
+      import('./resources/Modules/08RealizarTransacao/realizar-transacao.module').then(
+        (m) => m.RealizarTransacaoModule
+      ),
+  },
+  {
+    path: '',
+    data: {
+      title: 'Histórico de Transações',
+    },
+    loadChildren: () =>
+      import('./resources/Modules/04Histórico-Transacoes/historico-transacoes.module').then(
+        (m) => m.HistoricoTransacoesModule
+      ),
+  },
+  {
+    path: '',
+    data: {
+      title: 'Metas',
+    },
+    loadChildren: () =>
+      import('./resources/Modules/07Metas/metas.module').then(
+        (m) => m.MetasModule
+      ),
+  },
+  {
+    path: '',
+    data: {
+      title: 'Relatório Financeiro',
+    },
+    loadChildren: () =>
+      import('./resources/Modules/05Relatório-Financeiro/relatorio-financeiro.module').then(
+        (m) => m.RelatorioFinanceiroModule
+      ),
+  },
   {
     path: '',
     data: {

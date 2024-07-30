@@ -102,3 +102,23 @@ input, select {
 input::-webkit-input-placeholder{
   color: rgba(255, 255, 255, 0.362);
 }
+
+.btnContainer{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+  .btnContainer button:hover{
+    opacity: .85;
+  }
+
+  .btnContainer button{
+    padding: 10px 22px;
+    background-color: #15283c;
+    color: white;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
