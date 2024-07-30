@@ -1,0 +1,17 @@
+  <div class="white_shd orange_c full margin_bottom_30">
+    <div class="full graph_head">
+      <div class="heading1 margin_0">
+        <h2>{{ title }}</h2>
+      </div>
+    </div>
+    <div class="map_section padding_infor_info">
+      <div id="chart">
+        <ul>
+          <li class="list_item" *ngFor="let movimento of movimentos; index as i">
+            <p>{{ i + 1 }}- {{movimento.area}}</p>
+            <p>{{movimento.percentual}} %</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

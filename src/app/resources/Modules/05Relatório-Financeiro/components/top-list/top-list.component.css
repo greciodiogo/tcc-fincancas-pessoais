@@ -1,0 +1,30 @@
+.list_item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list_item p{
+    font-size: 16px;
+    font-weight: 600;
+} 
+
+.list_item p:first-child{
+    font-weight: 500;
+    color: white;
+} 
+
+.list_item p:last-child{
+    color: #ff5722;
+} 
+
+.heading1{
+    color: white !important;
+}
+
+.graph_head {
+    padding: 18px 25px 15px;
+    float: left;
+    width: 100%;
+    border-bottom: solid #ff2222 2px;
+}
