@@ -25,25 +25,16 @@
               <div class="full price_table padding_infor_info">
                  <div class="row">
                     <div class="col-lg-12">
-                        
                         <div class="registar_transacao_container" [class.active_position]="true">
-
                           <form  [formGroup]="moneyControlForm" (submit)="onSubmit();">
-
                             <div class="registar-form-group">
-                              <!-- <label for="">categoria_id</label> -->
                               <select class="form-control" formControlName="categoria_id" required
                               [ngClass]="{ 'is-invalid': submitted && f.categoria_id.errors, 'is-valid': f.categoria_id.touched && !f.categoria_id.errors }">
-                                <!-- <option value="null" selected>categoria_id</option> -->
-                                <option value="null">Selecione</option>
-                                <option value="1">Receber</option>
-                                <option value="2">Retirar</option>
+                              <option value="null">Selecione</option>
+                                <option value="1">Receita</option>
+                                <option value="2">Despesa</option>
                               </select>
-                              <!-- <div *ngIf="submitted && f['categoria_id'].errors" class="invalid-feedback">
-                                <div *ngIf="f['categoria_id'].errors.required">O campo categoria_id é obrigatório</div>
-                              </div> -->
                             </div>
-
                             <div class="registar-form-group">
                               <!-- <label for="">Descrição</label> -->
                               <input class="form-control" type="text" placeholder="Descrição" formControlName="transacaoDescricao" required
@@ -52,45 +43,24 @@
                                 <div *ngIf="f['transacaoDescricao'].errors.required">O campo Descrição é obrigatório</div>
                               </div> -->
                             </div>
-
                             <div class="registar-form-group">
-                              <!-- <label for="">transacao_tipos_id</label> -->
                               <select class="form-control" formControlName="transacao_tipos_id" required
                               [ngClass]="{ 'is-invalid': submitted && f.transacao_tipos_id.errors, 'is-valid': f.transacao_tipos_id.touched && !f.transacao_tipos_id.errors }">
-                                <!-- <option value="null" selected>transacao_tipos_id</option> -->
-                                <option value="null">Selecione</option>
-                                <option [value]="item.id" *ngFor="let item of categories">{{item?.descricao}}</option>
+                               <option [value]="item.id" *ngFor="let item of categories">{{item?.descricao}}</option>
                               </select>
-                              <!-- <div *ngIf="submitted && f['transacao_tipos_id'].errors" class="invalid-feedback">
-                                <div *ngIf="f['transacao_tipos_id'].errors.required">O campo transacao_tipos_id é obrigatório</div>
-                              </div> -->
                             </div>
-
                             <div class="registar-form-group">
-                              <!-- <label for="">transacao_tipos_id</label> -->
                               <input type="date" formControlName="created_at" required>
-                              <!-- <div *ngIf="submitted && f['transacao_tipos_id'].errors" class="invalid-feedback">
-                                <div *ngIf="f['transacao_tipos_id'].errors.required">O campo transacao_tipos_id é obrigatório</div>
-                              </div> -->
                             </div>
-
                             <div class="registar-form-group">
-                              <!-- <label for="">Valor</label> -->
                               <input class="form-control" type="number" formControlName="valor" placeholder="Valor" min="0" required
                               [ngClass]="{ 'is-invalid': submitted && f.valor.errors, 'is-valid': f.valor.touched && !f.valor.errors }"
                               (input)="updateValor($event.target.value)">
-                              <!-- <div *ngIf="submitted && f['valor'].errors" class="invalid-feedback">
-                                <div *ngIf="f['valor'].errors.required">O campo Equipa é obrigatório</div>
-                              </div> -->
                             </div>
                             <div class="registar-form-group">
-                              <!-- <label for="">Observação</label> -->
                               <textarea class="form-control" name="" formControlName="transacaoMotivo" id="" cols="30" rows="2" placeholder="Observação"
                               [ngClass]="{ 'is-invalid': submitted && f.transacaoMotivo.errors, 'is-valid': f.transacaoMotivo.touched && !f.transacaoMotivo.errors }"></textarea>
-                              <!-- <div *ngIf="submitted && f['transacaoMotivo'].errors" class="invalid-feedback">
-                                <div *ngIf="f['transacaoMotivo'].errors.required">O campo Equipa é obrigatório</div>
-                              </div> -->
-                            </div>
+                         </div>
                             <button type="submit">
                               {{formType== 1 ? 'Receber' : 'Retirar'}} 
                               <span *ngIf="valorNumber">{{this.configService.numberFormat(valorNumber)}} AOA</span>

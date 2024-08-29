@@ -1,8 +1,6 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { AuthService } from "@app/core/security/authentication/auth.service";
-import { LanguageService } from "@app/shared/services/language.service";
-import { TranslateService } from "@ngx-translate/core";
-
+import { PieChartComponent } from "@app/resources/Modules/05Relatório-Financeiro/components/pie-chart/pie-chart.component";
 
 @Component({
   selector: "app-nav-menu",
@@ -11,10 +9,12 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class NavMenuComponent implements OnInit {
 
+  @ViewChild(PieChartComponent, { static: true })
+  public pieChartComponent: PieChartComponent;
+
   @Input() public currentUser:any
   @Input() public authenticated: AuthService
   @Input() public layoutNavigationTop:boolean = true;
-
   constructor(
     public auth: AuthService, 
     // public languageservice:LanguageService,
@@ -24,5 +24,9 @@ export class NavMenuComponent implements OnInit {
       // this.languageservice.currentLanguage$.subscribe((language) => {
       //   this.translate.use(language);
       // });
+    }
+
+    handleClickNew(){
+      this.pieChartComponent.initChart()
     }
 }

@@ -35,11 +35,9 @@
                                           <tr>
                                             <th width="50">Item</th>
                                             <th width="100">Titulo</th>
-                                            <th width="100">Movimento</th>
-                                            <th width="100">Categoria</th>
-                                            <th width="100">Estado</th>
+                                            <th width="100">Descrição</th>
                                             <th width="150">Data Movimento</th>
-                                            <th width="140">Valor</th>
+                                            <th width="140">Valor Pretendido</th>
                                             <th width="20"></th>
                                           </tr>
                                       </thead>
@@ -53,7 +51,7 @@
                                           };
                                     index as i">
                                   <td width="50" class="titleWrapper">
-                                      <i class="fa fa-home">
+                                      <i>
                                         <img
                                           width="20"
                                           height="20"
@@ -63,15 +61,13 @@
                                       </i>
                                   </td>
                                   <td width="100">{{transaction?.transacaoDescricao }}</td>
-                                  <td>{{transaction?.categoria?.categoriaDescricao || '---' }}</td>
                                   <td>{{ transaction?.transacaoTipo?.descricao || "---" }}</td>
-                                  <td>{{ transaction?.transacaoEstado?.descricao || '---' }}</td>
                                   <td>{{ transaction && transaction?.created_at }}</td>
                                   <td>
                                     {{transaction?.valor || 0}}
                                   </td>
                                   <td width="20" class="td-action">
-                                    <a class="fa fa-home" (click)="onHandleEdit(transaction)">
+                                    <a (click)="onHandleEdit(transaction)">
                                       <img
                                         width="16"
                                         height="20"

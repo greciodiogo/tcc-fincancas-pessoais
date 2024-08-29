@@ -51,7 +51,10 @@ export class MoneyControlFormComponent implements OnInit {
   ngOnInit() {
     this.getTransacaoTipos()
   }
-
+  get f() {
+    return this.moneyControlForm.controls;
+  }
+  
   createForm() {
     this.moneyControlForm = this.formBuilder.group({
       id: [{ value: null, disabled: true }],
@@ -64,17 +67,12 @@ export class MoneyControlFormComponent implements OnInit {
     });
   }
 
-  get f() {
-    return this.moneyControlForm.controls;
-  }
 
   onSubmit() {
-
     this.submitted = true;
     if (this.moneyControlForm.invalid) {
       return;
     }
-    
     this.loading = true;
     const id = this.moneyControlForm.getRawValue().id;
     this.createOrEdit(this.moneyControlForm, id === null ? true : false, id);
@@ -91,15 +89,7 @@ export class MoneyControlFormComponent implements OnInit {
   }
 
   createOrEdit(formulario: UntypedFormGroup, isCreate: boolean = true, id) {
-
-    const categoryValidate = this.formType==3 ? 
-      this.transaction.categoria_id : 
-      this.formType
-
-    this.moneyControlForm.patchValue({
-      categoria_id: categoryValidate
-      });
-
+    
       // this.loading = true
       this.store.dispatch(addtransaction({ transaction: formulario.value }))
       this.loading = false;

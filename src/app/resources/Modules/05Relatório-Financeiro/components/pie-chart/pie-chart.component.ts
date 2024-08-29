@@ -31,7 +31,7 @@ export type ChartOptions = {
   styleUrls: ['./pie-chart.component.scss']
 })
 export class PieChartComponent implements OnInit{
-  public movimentos: any  
+  public movimentos: any[] = []
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
@@ -75,7 +75,6 @@ export class PieChartComponent implements OnInit{
   public findTopTransacoes(){
     this.transacaoService.findDetailedTransacoes().subscribe(
       (response) => {
-        setTimeout(() => {
           // Atualizar o valor dentro da zona Angular
           this.ngZone.run(() => {
             this.movimentos = response;
@@ -88,7 +87,6 @@ export class PieChartComponent implements OnInit{
             // console.log(this.dashboard)
             this.cdr.detectChanges(); // Forçar a detecção de mudanças
           });
-        }, 2000);
       },
       (error) => (this.transacaoService.loading = false)
     );
