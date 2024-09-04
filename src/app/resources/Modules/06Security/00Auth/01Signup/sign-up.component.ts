@@ -50,13 +50,14 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
       id: [{ value: null, disabled: true }],
-      name: [''],
+      nome: [''],
+      username: [''],
       telefone: [''],
       email: [''],
       password: [null, Validators.required],
       confirmpassword: [null, Validators.required],
     }); 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/configuracoes-conta';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
 
   }
 
@@ -87,7 +88,6 @@ export class SignUpComponent implements OnInit {
     if (this.signupForm.invalid) {
       return;
     }
-
     this.loading = true;
     this.authenticationService.signup(this.signupForm.value)
       .pipe(first(), finalize(()=>{ this.loading = false; }))
