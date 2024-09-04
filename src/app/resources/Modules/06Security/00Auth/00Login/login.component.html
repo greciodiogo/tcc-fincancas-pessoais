@@ -1,51 +1,3 @@
-<!-- 
-<div class="login">
-  <div class="login-container">
-    
-    <div class="login-bg"></div>
-    <div class="form-side">
-      <img class="logo-container" src="/assets/img/logo.png" alt="" width="120px" height="120px">
-      <h4 class="greetings">Olá, Benvindo novamente</h4>
-      <h5 class="desc">Muito feliz em te-lo aqui, Para entrar no jogo use a tua conta.</h5>
-
-      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="autenticate()" style="position: relative;"><br>
-        <app-loading [show]="loading" title="Aguarde" subTitle="Estamos a validar as suas credenciais de acesso"></app-loading>
-        <p class="text-muted"></p>
-
-        <div class="row">
-
-          <div class="registar-form-group">
-            <label for="">Telefone</label>
-            <input class="form-control" type="number" placeholder="Telefone" formControlName="telefone" required
-            [ngClass]="{ 'is-invalid': submitted && f.telefone.errors, 'is-valid': f.telefone.touched && !f.telefone.errors }">
-          </div>
-
-          <div class="registar-form-group">
-            <label for="">Palavra Passe</label>
-            <input class="form-control" type="password" placeholder="senha" formControlName="password" required
-            [ngClass]="{ 'is-invalid': submitted && f.password.errors, 'is-valid': f.password.touched && !f.password.errors }">
-          </div>
-
-        </div>
-        <div class="col-md-12 text-right">
-          <div class="forgot-password">
-          <a routerLink="/account/recuperar" class="forget-password">Esqueci a Palavra-passe</a>
-          </div>
-        </div> 
-        <div class="row">
-          <button class="btnLogin" [disabled]="this.loginForm.pristine || this.loginForm.invalid" [class.optionalBtn]="this.loginForm.pristine || this.loginForm.invalid">Login</button>
-        </div>
-
-
-        <div class="row">
-          <a  routerLink="/signup" routerLinkActive="active" class="btnLogin">Criar conta</a>
-        </div>
-      </form>
-
-    </div>
-  </div> 
-</div> -->
-
 <div class="full_container">
   <div class="container">
      <div class="center verticle_center full_height">
@@ -77,6 +29,14 @@
                        <label class="label_field hidden">hidden label</label>
                        <button class="main_bt" [disabled]="this.loginForm.pristine || this.loginForm.invalid">Entrar</button>
                     </div>
+                    
+                     <div class="row help-password" style="margin-top: 10px; border-radius: 4px;"> 
+                        <div class="col-md-4">
+                        <label class="rememberme"> 
+                           <a  routerLink="/signup" routerLinkActive="active" class="forget-password">Criar conta</a>
+                        </label>
+                        </div>
+                     </div>
                  </fieldset>
               </form>
            </div>
