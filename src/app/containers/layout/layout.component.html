@@ -9,7 +9,7 @@
     <app-menu-sidebar *ngIf="showSidebar"></app-menu-sidebar>
 
     <div class="content-wrapper {{ layout.layoutNavigationTop?'content-wrapper-left': ''}}">
-    <app-header></app-header>
+    <app-header [authenticated]="auth"></app-header>
     <!-- <app-menu-header [themeApp]="themeApp" class="{{ layout.layoutNavigationTop?'content-wrapper-left': ''}}" *ngIf="layout.customLayout" [layoutNavigationTop]="layout.layoutNavigationTop" [authenticated]="auth"></app-menu-header> -->
       
       <section class="content" >

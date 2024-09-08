@@ -25,6 +25,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { environment as env } from '@env/environment';
  import { Theme } from '@app/containers/layout/themeApp';
  import { filter } from 'rxjs/operators';
+import { AuthService } from '@app/core/security/authentication/auth.service';
 
 @Component({
   selector: 'layout',
@@ -76,6 +77,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
     // private permService: PermissionService,
     private routingService: RoutingService,
     private titleService: Title,
+    public auth: AuthService,
     private changeDetectorRef: ChangeDetectorRef,
     private router: Router,
     private compiler: Compiler, 
