@@ -36,10 +36,10 @@ export class MetasComponent implements OnInit, OnDestroy {
 
   formType: number = 1
 
-  constructor(
-    
-    public authenticated: AuthService,
-    public metasService: MetasService,
+    constructor(
+      
+      public authenticated: AuthService,
+      public metasService: MetasService,
     public configService: FnService,
     public config: NgbCarouselConfig
   ) {
@@ -127,6 +127,30 @@ export class MetasComponent implements OnInit, OnDestroy {
 
   public openModal(){
     this.isModal = true
+  }
+
+  public MONTHS
+  calculateMonthDifference(data_inicial, data_conclusao) {
+    const createdAt = data_inicial
+    const dataConclusao = data_conclusao
+
+    if (createdAt && dataConclusao) {
+      const createdDate = new Date(createdAt);
+      const conclusionDate = new Date(dataConclusao);
+
+      const yearsDiff = conclusionDate.getFullYear() - createdDate.getFullYear();
+      const monthsDiff = conclusionDate.getMonth() - createdDate.getMonth();
+
+      let totalMonthsDiff = yearsDiff * 12 + monthsDiff;
+      this.MONTHS = totalMonthsDiff
+      return totalMonthsDiff;
+    }
+    return null;
+  }
+
+  generateMetaParcela(data_inicial, data_final, valorPretendido){
+    const months = this.calculateMonthDifference(data_inicial, data_final)
+    return valorPretendido / this.MONTHS
   }
  
 }

@@ -36,6 +36,7 @@
                                             <th width="100">Titulo</th>
                                             <th width="100">Descrição</th>
                                             <th width="140">Valor Pretendido</th>
+                                            <th width="140">Valor parcelar</th>
                                             <th width="150">Data Movimento</th>
                                             <th width="150">Data Conclusao</th>
                                             <th width="20"></th>
@@ -52,7 +53,8 @@
                                     index as i">
                                   <td width="100">{{meta?.titulo || '---' }}</td>
                                   <td>{{ meta?.descricao || "---" }}</td>
-                                  <td>{{ meta?.valorPretendido || "---" }}</td>
+                                  <td>{{ configService.formatNumber(meta?.valorPretendido || 0 ) }}</td>
+                                  <td>{{ generateMetaParcela(meta?.created_at,  meta?.data_conclusao, meta?.valorPretendido) || "---" }}</td>
                                   <td>{{ meta && meta?.created_at }}</td>
                                   <td>{{ meta && meta?.data_conclusao }}</td>
                                   <td width="20" class="td-action">
