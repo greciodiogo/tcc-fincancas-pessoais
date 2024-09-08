@@ -34,21 +34,17 @@
                           </div> -->
                         </div>
 
-                        <!-- <div class="registar-form-group"> -->
-                          <!-- <label for="">transacao_tipos_id</label> -->
-                          <!-- <select class="form-control" formControlName="transacao_tipos_id" required
-                          [ngClass]="{ 'is-invalid': submitted && f.transacao_tipos_id.errors, 'is-valid': f.transacao_tipos_id.touched && !f.transacao_tipos_id.errors }">
-                            <option value="null">Selecione</option>
-                            <option [value]="item.id" *ngFor="let item of categories">{{item?.descricao}}</option>
-                          </select> -->
-                          <!-- <div *ngIf="submitted && f['transacao_tipos_id'].errors" class="invalid-feedback">
-                            <div *ngIf="f['transacao_tipos_id'].errors.required">O campo transacao_tipos_id é obrigatório</div>
-                          </div> -->
-                        <!-- </div> -->
-
                         <div class="registar-form-group">
                           <!-- <label for="">transacao_tipos_id</label> -->
                           <input type="date" formControlName="created_at" required>
+                          <!-- <div *ngIf="submitted && f['transacao_tipos_id'].errors" class="invalid-feedback">
+                            <div *ngIf="f['transacao_tipos_id'].errors.required">O campo transacao_tipos_id é obrigatório</div>
+                          </div> -->
+                        </div>
+
+                        <div class="registar-form-group">
+                          <!-- <label for="">transacao_tipos_id</label> -->
+                          <input type="date" formControlName="data_conclusao" required>
                           <!-- <div *ngIf="submitted && f['transacao_tipos_id'].errors" class="invalid-feedback">
                             <div *ngIf="f['transacao_tipos_id'].errors.required">O campo transacao_tipos_id é obrigatório</div>
                           </div> -->
