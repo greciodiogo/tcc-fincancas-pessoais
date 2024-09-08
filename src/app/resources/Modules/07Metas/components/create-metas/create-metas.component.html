@@ -51,12 +51,12 @@
                         </div>
 
                         <div class="registar-form-group">
-                          <!-- <label for="">Valor</label> -->
-                          <input class="form-control" type="number" formControlName="valor" placeholder="Valor Pretendido" min="0" required
-                          [ngClass]="{ 'is-invalid': submitted && f.valor.errors, 'is-valid': f.valor.touched && !f.valor.errors }"
+                          <!-- <label for="">valorPretendido</label> -->
+                          <input class="form-control" type="number" formControlName="valorPretendido" placeholder="Valor Pretendido" min="0" required
+                          [ngClass]="{ 'is-invalid': submitted && f.valorPretendido.errors, 'is-valid': f.valorPretendido.touched && !f.valorPretendido.errors }"
                           (input)="updateValor($event.target.value)">
-                          <!-- <div *ngIf="submitted && f['valor'].errors" class="invalid-feedback">
-                            <div *ngIf="f['valor'].errors.required">O campo Equipa é obrigatório</div>
+                          <!-- <div *ngIf="submitted && f['valorPretendido'].errors" class="invalid-feedback">
+                            <div *ngIf="f['valorPretendido'].errors.required">O campo Equipa é obrigatório</div>
                           </div> -->
                         </div>
                         <button type="submit">

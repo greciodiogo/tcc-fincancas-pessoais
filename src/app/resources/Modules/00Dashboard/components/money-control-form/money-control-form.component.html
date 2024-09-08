@@ -8,7 +8,7 @@
       <i class="fa fa-home" *ngIf="formType!=3">
         <img width="24" height="24" [src]="'../../../../../../assets/img/sidebar/'+imageTitle" alt="">
       </i>
-      <h3 class="registar_title">{{formType==3 ? "Alterar movimento" : (formType== 1 ? 'Receber' : 'Retirar')}}</h3>
+      <h3 class="registar_title">{{formType==3 ? "Alterar Operação" : (formType== 1 ? 'Receber' : 'Retirar')}}</h3>
   </div>
   <form  [formGroup]="moneyControlForm" (submit)="onSubmit();">
     <div class="registar-form-group">
@@ -51,7 +51,7 @@
       </div> -->
     </div>
     <button type="submit">
-      {{formType== 1 ? 'Receber' : 'Retirar'}} 
+      Cadastrar
       <span *ngIf="valorNumber">{{this.configService.numberFormat(valorNumber)}} AOA</span>
     </button>
 </form>
