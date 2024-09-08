@@ -33,41 +33,30 @@
                                     <table class="table table-striped projects">
                                       <thead class="thead-dark">
                                           <tr>
-                                            <th width="50">Item</th>
                                             <th width="100">Titulo</th>
                                             <th width="100">Descrição</th>
-                                            <th width="150">Data Movimento</th>
                                             <th width="140">Valor Pretendido</th>
+                                            <th width="150">Data Movimento</th>
+                                            <th width="150">Data Conclusao</th>
                                             <th width="20"></th>
                                           </tr>
                                       </thead>
                                       <tbody>
-                                        <tr *ngFor="let transaction of transactionData?.data | paginate
+                                        <tr *ngFor="let meta of metas | paginate
                                         : {
                                             itemsPerPage: pagination?.perPage,
                                             currentPage: pagination?.page,
                                             totalItems: pagination?.total,
-                                            id: 'listTransactionFull'
+                                            id: 'listmetaFull'
                                           };
                                     index as i">
-                                  <td width="50" class="titleWrapper">
-                                      <i>
-                                        <img
-                                          width="20"
-                                          height="20"
-                                          [src]="'../../../../../../assets/img/sidebar/' + (transaction?.categoria_id==1 ? 'income.png' : 'withdraw.png')"
-                                          alt=""
-                                        />
-                                      </i>
-                                  </td>
-                                  <td width="100">{{transaction?.transacaoDescricao }}</td>
-                                  <td>{{ transaction?.transacaoTipo?.descricao || "---" }}</td>
-                                  <td>{{ transaction && transaction?.created_at }}</td>
-                                  <td>
-                                    {{transaction?.valor || 0}}
-                                  </td>
+                                  <td width="100">{{meta?.titulo || '---' }}</td>
+                                  <td>{{ meta?.descricao || "---" }}</td>
+                                  <td>{{ meta?.valorPretendido || "---" }}</td>
+                                  <td>{{ meta && meta?.created_at }}</td>
+                                  <td>{{ meta && meta?.data_conclusao }}</td>
                                   <td width="20" class="td-action">
-                                    <a (click)="onHandleEdit(transaction)">
+                                    <a (click)="onHandleEdit(meta)">
                                       <img
                                         width="16"
                                         height="20"

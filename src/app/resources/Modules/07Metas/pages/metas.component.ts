@@ -2,21 +2,18 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  NgZone,
-  ChangeDetectorRef,
-  ViewChild,
   EventEmitter,
   Output,
 } from "@angular/core";
 import { FnService } from "@app/shared/services/fn.helper.service";
-import { DashboardService } from "@app/shared/services/dashboard.service";
 
 import { Pagination } from "@app/shared/models/pagination";
 import { Observable, Subject } from "rxjs";
 import { AuthService } from "@app/core/security/authentication/auth.service";
-import { Store } from "@ngrx/store";
-import { loadtransaction, loadtransactionsuccess } from "@app/resources/Store/Repositorio/Repositorio.Action";
 import { NgbCarouselConfig } from "@ng-bootstrap/ng-bootstrap";
+import { MetasService } from "../services/metas.service";
+import { HttpParams } from "@angular/common/http";
+import { Filter } from "@app/shared/models/Filters/Filter";
 
 @Component({
   selector: "app-metas",
@@ -26,33 +23,24 @@ import { NgbCarouselConfig } from "@ng-bootstrap/ng-bootstrap";
 export class MetasComponent implements OnInit, OnDestroy {
   
   @Output() public close = new EventEmitter<any>();
-
-  public transactionData: any
-  public lastTransaction: any
   
   public pagination = new Pagination();
   public observableObj: Observable<any>;
   public subjectObj = new Subject<number>();
 
+  public filter = new Filter()
+  public metas = []
+
+  public meta: any
   public data = 0;
 
-  public dashboard: any = {
-    pagas: 0,
-    dividas: 0,
-    qtdfaturas: 0,
-    servicos: 0,
-    qtdCompras: 0,
-    qtdFacturasMes: [],
-    qtdpagamentos:0,
-  };
   formType: number = 1
 
   constructor(
     
     public authenticated: AuthService,
-    public dashboardService: DashboardService,
+    public metasService: MetasService,
     public configService: FnService,
-    private store: Store,
     public config: NgbCarouselConfig
   ) {
     config.interval = 6000;
@@ -61,15 +49,50 @@ export class MetasComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.dispatch(loadtransaction());
-    this.store.select(loadtransactionsuccess).subscribe(response => {
-      if (response.transaction.data.length > 0) {
-        this.transactionData = response.transaction
-        this.totalDisponivel = response.transaction.data[0].conta.saldo_actual;
-        this.lastTransaction = response.transaction.data[0];
-      } 
-    })
+    this.listarMetas();
   }
+
+  public listarMetas() {
+    this.metasService.loading = true;
+
+    var httpParams = new HttpParams()
+      .set("page", (this.pagination.page || 1).toString())
+      .set("perPage", (this.pagination.perPage || 5).toString())
+      .set("search", this.filter.search.toString())
+      .set("orderBy", this.filter.orderBy.toString())
+      .set("typeOrderBy", this.filter.typeOrderBy.toString())
+      .set("typeFilter", this.filter.typeFilter.toString())
+      .set("isPaginate", "1");
+    const search = this.filter.search;
+
+    this.metasService.list(search, httpParams).subscribe(data => {
+      this.metas = data.data 
+      this.pagination.page = data.page;
+      this.pagination.perPage = data.perPage;
+      this.pagination.lastPage = data.lastPage;
+      this.pagination.total = data.total;
+      this.metasService.loading = false 
+    }, error => {
+
+      this.metasService.loading = false
+    });
+  }
+
+  public getPageFilterData(page: number) {
+    if (this.pagination.perPage == null) {
+      return;
+    }
+    this.pagination.page = page;
+    this.subjectObj.next(this.pagination.page);
+  }
+
+  setMeta(meta: any) {
+    this.meta = meta
+  }
+
+  public delete(id: number) {
+    this.metasService.delete(id).subscribe(error => { this.metasService.loading = false });
+  } 
 
   ngOnDestroy(): void {}
 
@@ -96,28 +119,6 @@ export class MetasComponent implements OnInit, OnDestroy {
   setFormTitle(type: number){
     this.formType = type;
   }
-
-  public dataHora = new Date();
-  public dataFormatada = `${this.dataHora.getDate().toString().padStart(2, "0")}.${(this.dataHora.getMonth() + 1).toString().padStart(2, "0")}.${this.dataHora.getFullYear()} ${this.dataHora.getHours().toString().padStart(2, "0")}:${this.dataHora.getMinutes().toString().padStart(2, "0")}:${this.dataHora.getSeconds().toString().padStart(2, "0")}`;
-  
-  public userSession = {
-      nome: ""
-  }
-
-    public getPageFilterData(page: number) {
-      if (this.pagination.perPage == null) {
-        return;
-      }
-    this.pagination.page = page;
-    this.subjectObj.next(this.pagination.page);
-  }
-
-  public totalDisponivel: any ;
-
-  handleCreateMetas(){
-    
-  }
-
   
   public isModal: boolean=false
   public closeModal(){
