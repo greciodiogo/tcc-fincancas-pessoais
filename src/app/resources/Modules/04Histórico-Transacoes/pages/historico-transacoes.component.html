@@ -110,8 +110,8 @@
                         <td>
                           {{ this.configService.numberFormat( transaction?.valor || 0)}}
                         </td>
-                        <td width="20" class="td-action">
-                          <a (click)="onHandleEdit(transaction)">
+                        <td width="20" class="td-action" style="cursor: pointer;">
+                          <a (click)="handleEditTransaction(transaction)">
                             <img
                               width="16"
                               height="20"
@@ -146,3 +146,6 @@
 </div>
 </div>
 </div>
+
+<app-editar-criar-transacao
+[isOpen]="isModal" (loadList)="listTransactions()" (close)="closeModal()"></app-editar-criar-transacao>

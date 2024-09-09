@@ -17,6 +17,8 @@ import { AuthService } from "@app/core/security/authentication/auth.service";
 import { Store } from "@ngrx/store";
 import { loadtransaction, loadtransactionsuccess } from "@app/resources/Store/Repositorio/Repositorio.Action";
 import { NgbCarouselConfig } from "@ng-bootstrap/ng-bootstrap";
+import { MoneyControlFormComponent } from "../../08RealizarTransacao/pages/money-control-form.component";
+import { EditarCriarTransacaoComponent } from "../components/editar-criar-transacao/editar-criar-transacao.component";
 
 @Component({
   selector: "app-historico-transacoes",
@@ -33,7 +35,7 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
   public pagination = new Pagination();
   public observableObj: Observable<any>;
   public subjectObj = new Subject<number>();
-
+  MoneyControlFormComponent
   public data = 0;
 
   public dashboard: any = {
@@ -61,6 +63,10 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.listTransactions()
+  }
+  
+  listTransactions(){
     this.store.dispatch(loadtransaction());
     this.store.select(loadtransactionsuccess).subscribe(response => {
       if (response.transaction.data.length > 0) {
@@ -113,5 +119,21 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
   }
 
   public totalDisponivel: any ;
- 
+
+  @ViewChild(EditarCriarTransacaoComponent, { static: true })
+  public editarCriarTransacaoComponent: EditarCriarTransacaoComponent;
+
+  handleEditTransaction(transaction){
+    this.editarCriarTransacaoComponent.setTransaction(transaction)
+    this.isModal = true
+  }
+  
+  public isModal: boolean=false
+  public closeModal(){
+    this.isModal = false
+  }
+  
+  public openModal(){
+    this.isModal = true
+  }
 }
