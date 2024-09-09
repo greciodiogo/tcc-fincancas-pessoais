@@ -16,12 +16,12 @@ export class TransacaoService extends BaseStorageService{
   public loading:boolean=false
 
   constructor(protected http: ApiService, public Permission: PermissionService) {
-    super(`transacoes/find`);
+    super(`transacoes`);
   }
 
   findDetailedTransacoes(): Observable<any> {
     this.loading = true;
-    return this.http.get(`${this.url}/findDetailedTransacoes`).pipe(finalize(() => {
+    return this.http.get(`${this.url}/find/findDetailedTransacoes`).pipe(finalize(() => {
         this.loading = false;
       }),
       map((data) => Object(data).data)
@@ -30,7 +30,7 @@ export class TransacaoService extends BaseStorageService{
 
   findTotaisPerTempo(): Observable<any> {
     this.loading = true;
-    return this.http.get(`${this.url}/findTotaisPerTempo`).pipe(finalize(() => {
+    return this.http.get(`${this.url}/find/findTotaisPerTempo`).pipe(finalize(() => {
         this.loading = false;
       }),
       map((data) => Object(data).data)

@@ -9,6 +9,7 @@ import { BackdropBlurModule } from '@app/shared/components/backdrop-blur/backdro
 import { SharedGlobalModule } from '@app/shared/sharedGlobal.module';
 import { TransactionFullComponent } from './components/transaction-full/transaction-full.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditarCriarTransacaoComponent } from './components/editar-criar-transacao/editar-criar-transacao.component';
 
 @NgModule({
   imports: [
@@ -19,8 +20,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     BackdropBlurModule,
     SharedGlobalModule,
-    NgbCarouselModule
+    NgbCarouselModule,
   ],
-  declarations: [ HistoricoTransacoesComponent, TransactionFullComponent]
+  declarations: [ HistoricoTransacoesComponent, TransactionFullComponent, EditarCriarTransacaoComponent]
 })
 export class HistoricoTransacoesModule { }

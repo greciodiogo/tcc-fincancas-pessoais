@@ -96,7 +96,7 @@ export class CreateMetasComponent implements OnInit {
             formulario.reset();
           }
           this.loadList.emit(Object(response).data);
-          this.closeModal.nativeElement.click();
+          // this.closeModal.nativeElement.click();
         },
 
         (error) => {
