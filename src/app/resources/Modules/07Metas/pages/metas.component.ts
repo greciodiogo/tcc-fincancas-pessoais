@@ -134,7 +134,6 @@ export class MetasComponent implements OnInit, OnDestroy {
     const createdAt = data_inicial
     const dataConclusao = data_conclusao
 
-    if (createdAt && dataConclusao) {
       const createdDate = new Date(createdAt);
       const conclusionDate = new Date(dataConclusao);
 
@@ -144,13 +143,12 @@ export class MetasComponent implements OnInit, OnDestroy {
       let totalMonthsDiff = yearsDiff * 12 + monthsDiff;
       this.MONTHS = totalMonthsDiff
       return totalMonthsDiff;
-    }
-    return null;
+
   }
 
   generateMetaParcela(data_inicial, data_final, valorPretendido){
     const months = this.calculateMonthDifference(data_inicial, data_final)
-    return valorPretendido / this.MONTHS
+    return valorPretendido / months
   }
  
 }
