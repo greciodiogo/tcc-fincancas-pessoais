@@ -118,6 +118,16 @@ export const routes: Routes = [
   {
     path: '',
     data: {
+      title: 'Perfil',
+    },
+    loadChildren: () =>
+      import('./resources/Modules/09Perfil/perfil.module').then(
+        (m) => m.PerfilModule
+      ),
+  },
+  {
+    path: '',
+    data: {
       title: 'Relatório Financeiro',
     },
     loadChildren: () =>
