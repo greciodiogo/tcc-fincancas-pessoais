@@ -8,19 +8,19 @@
               </div>
            </div>
            <div class="login_form">
+              <h4 style="margin: 0rem 3rem 2rem 2rem; color: #f44336;">Criação de conta de Estudante</h4>
+
               <form [formGroup]="signupForm" (ngSubmit)="registerUser()" autocomplete="off">
                  <fieldset>
-                   <div class="field">
-                        <!-- <label class="label_field">nome</label> -->
-                        <input type="text" name="nome" placeholder="Nome" formControlName="nome" required
-                        [ngClass]="{ 'is-invalid': submitted && f.nome.errors, 'is-valid': f.nome.touched && !f.nome.errors }" autocomplete="new-email"/>
-                     </div>
-                  <div class="name_container">
-                    <div class="field">
-                         <!-- <label class="label_field">nome</label> -->
-                         <input type="text" name="username" placeholder="Username" formControlName="username" required
-                         [ngClass]="{ 'is-invalid': submitted && f.username.errors, 'is-valid': f.username.touched && !f.username.errors }" autocomplete="new-email"/>
-                      </div>
+                    <div class="name_container">
+                       <!-- <div class="field">
+                          <input type="text" name="username" placeholder="Username" formControlName="username" required
+                          [ngClass]="{ 'is-invalid': submitted && f.username.errors, 'is-valid': f.username.touched && !f.username.errors }" autocomplete="new-email"/>
+                        </div> -->
+                     <div class="field">
+                           <input type="text" name="nome" placeholder="Nome" formControlName="nome" required
+                           [ngClass]="{ 'is-invalid': submitted && f.nome.errors, 'is-valid': f.nome.touched && !f.nome.errors }" autocomplete="new-email"/>
+                        </div>
                     <div class="field">
                          <!-- <label class="label_field">Email</label> -->
                          <input type="email" name="email" placeholder="E-mail" formControlName="email" required
@@ -40,11 +40,11 @@
                         [ngClass]="{ 'is-invalid': submitted && f.confirmpassword.errors, 'is-valid': f.confirmpassword.touched && !f.confirmpassword.errors }"/>
                      </div>
                     </div>
-                    <div class="field">
-                       <label class="label_field hidden">hidden label</label>
-                       <label class="form-check-label"><input type="checkbox" class="form-check-input"> Salvar Palavra-Passe</label>
+                    <!-- <div class="field"> -->
+                       <!-- <label class="label_field hidden">hidden label</label> -->
+                       <!-- <label class="form-check-label"><input type="checkbox" class="form-check-input"> Salvar Palavra-Passe</label> -->
                        <!-- <a class="forgot"  routerLink="/account/recuperar">Esquecer Password?</a> -->
-                    </div>
+                    <!-- </div> -->
                     <div class="field margin_0">
                        <label class="label_field hidden">hidden label</label>
                        <button class="main_bt" [disabled]="this.signupForm.pristine || this.signupForm.invalid">Criar Conta</button>

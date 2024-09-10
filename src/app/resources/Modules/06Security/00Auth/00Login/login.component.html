@@ -23,11 +23,11 @@
                        <input type="password" name="password" placeholder="Password" formControlName="password" required
                        [ngClass]="{ 'is-invalid': submitted && f.password.errors, 'is-valid': f.password.touched && !f.password.errors }"/>
                     </div>
-                    <div class="field">
-                       <label class="label_field hidden">hidden label</label>
-                       <label class="form-check-label"><input type="checkbox" class="form-check-input"> Salvar Palavra-Passe</label>
+                    <!-- <div class="field"> -->
+                       <!-- <label class="label_field hidden">hidden label</label> -->
+                       <!-- <label class="form-check-label"><input type="checkbox" class="form-check-input"> Salvar Palavra-Passe</label> -->
                        <!-- <a class="forgot"  routerLink="/account/recuperar">Esquecer Password?</a> -->
-                    </div>
+                    <!-- </div> -->
                     <div class="field margin_0">
                        <label class="label_field hidden">hidden label</label>
                        <button class="main_bt" [disabled]="this.loginForm.pristine || this.loginForm.invalid">Entrar</button>
