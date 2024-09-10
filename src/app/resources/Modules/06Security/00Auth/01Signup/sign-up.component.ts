@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { VerifyCodeComponent } from '../verify-code/verify-code.component';
 import { LoginService } from '@app/core/security/authentication/login.service';
+import { ToastrService } from 'ngx-toastr';
 export interface Cliente {
   first_name?: string;
   last_name?: string;
@@ -41,6 +42,7 @@ export class SignUpComponent implements OnInit {
     public userService: UserService,
     private router: Router,
     public auth: AuthService, 
+    public toasterService: ToastrService,
     public authenticationService: LoginService,
     private route: ActivatedRoute, 
   ) { 
@@ -53,7 +55,7 @@ export class SignUpComponent implements OnInit {
       nome: [''],
       username: [''],
       telefone: [''],
-      email: [''],
+      email: ['', [Validators.required]],
       password: [null, Validators.required],
       confirmpassword: [null, Validators.required],
     }); 
@@ -88,6 +90,13 @@ export class SignUpComponent implements OnInit {
     if (this.signupForm.invalid) {
       return;
     }
+
+    let email: string = this.f.email.value
+    if (!email.endsWith('@isaf.co.ao')) {
+    this.toasterService.warning(`'O email não faz parte do dominio isaf!'`, 'Aviso');
+      return 
+    }
+
     this.loading = true;
     this.authenticationService.signup(this.signupForm.value)
       .pipe(first(), finalize(()=>{ this.loading = false; }))
