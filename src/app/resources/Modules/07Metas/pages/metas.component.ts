@@ -57,7 +57,7 @@ export class MetasComponent implements OnInit, OnDestroy {
 
     var httpParams = new HttpParams()
       .set("page", (this.pagination.page || 1).toString())
-      .set("perPage", (this.pagination.perPage || 5).toString())
+      .set("perPage", (this.pagination.total || 1000).toString())
       .set("search", this.filter.search.toString())
       .set("orderBy", this.filter.orderBy.toString())
       .set("typeOrderBy", this.filter.typeOrderBy.toString())
