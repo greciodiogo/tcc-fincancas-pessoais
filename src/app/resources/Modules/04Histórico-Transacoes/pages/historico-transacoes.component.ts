@@ -14,11 +14,10 @@ import { DashboardService } from "@app/shared/services/dashboard.service";
 import { Pagination } from "@app/shared/models/pagination";
 import { Observable, Subject } from "rxjs";
 import { AuthService } from "@app/core/security/authentication/auth.service";
-import { Store } from "@ngrx/store";
-import { loadtransaction, loadtransactionsuccess } from "@app/resources/Store/Repositorio/Repositorio.Action";
 import { NgbCarouselConfig } from "@ng-bootstrap/ng-bootstrap";
-import { MoneyControlFormComponent } from "../../08RealizarTransacao/pages/money-control-form.component";
 import { EditarCriarTransacaoComponent } from "../components/editar-criar-transacao/editar-criar-transacao.component";
+import { HttpParams } from "@angular/common/http";
+import { Filter } from "@app/shared/models/Filters/Filter";
 
 @Component({
   selector: "app-historico-transacoes",
@@ -38,6 +37,8 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
   MoneyControlFormComponent
   public data = 0;
 
+  public filter = new Filter()
+
   public dashboard: any = {
     pagas: 0,
     dividas: 0,
@@ -54,7 +55,6 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
     public authenticated: AuthService,
     public dashboardService: DashboardService,
     public configService: FnService,
-    private store: Store,
     public config: NgbCarouselConfig
   ) {
     config.interval = 6000;
@@ -66,17 +66,6 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
     this.listTransactions()
   }
   
-  listTransactions(){
-    this.store.dispatch(loadtransaction());
-    this.store.select(loadtransactionsuccess).subscribe(response => {
-      if (response.transaction.data.length > 0) {
-        this.transactionData = response.transaction
-        this.totalDisponivel = response.transaction.data[0].conta.saldo_actual;
-        this.lastTransaction = response.transaction.data[0];
-      } 
-    })
-  }
-
   ngOnDestroy(): void {}
 
   public activePosition: boolean = false;
@@ -110,14 +99,6 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
       nome: ""
   }
 
-    public getPageFilterData(page: number) {
-      if (this.pagination.perPage == null) {
-        return;
-      }
-    this.pagination.page = page;
-    this.subjectObj.next(this.pagination.page);
-  }
-
   public totalDisponivel: any ;
 
   @ViewChild(EditarCriarTransacaoComponent, { static: true })
@@ -136,4 +117,47 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
   public openModal(){
     this.isModal = true
   }
+
+  public listTransactions() {
+    this.dashboardService.loading = true;
+
+    var httpParams = new HttpParams()
+      .set("page", (this.pagination.page || 1).toString())
+      .set("perPage", (this.pagination.total || 1000 ).toString())
+      .set("search", this.filter.search.toString())
+      .set("orderBy", this.filter.orderBy.toString())
+      .set("typeOrderBy", this.filter.typeOrderBy.toString())
+      .set("typeFilter", this.filter.typeFilter.toString())
+    const search = this.filter.search;
+
+    this.dashboardService.list(search, httpParams).subscribe(data => {
+      this.transactionData = data.data 
+      this.pagination.page = data.page;
+      this.pagination.perPage = data.perPage;
+      this.pagination.lastPage = data.lastPage;
+      this.pagination.total = data.total;
+      this.dashboardService.loading = false 
+    }, error => {
+
+      this.dashboardService.loading = false
+    });
+  }
+
+  public getPageFilterData(page: number) {
+    if (this.pagination.perPage == null) {
+      return;
+    }
+    console.log(page)
+    this.pagination.page = page;
+    this.subjectObj.next(this.pagination.page);
+  }
+
+  public transaction
+  setTransacao(transaction: any) {
+    this.transaction = transaction
+  }
+
+  public delete(id: number) {
+    this.dashboardService.delete(id).subscribe(error => { this.dashboardService.loading = false });
+  } 
 }

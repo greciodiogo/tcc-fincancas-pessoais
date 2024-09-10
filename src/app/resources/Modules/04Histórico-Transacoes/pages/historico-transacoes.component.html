@@ -84,11 +84,11 @@
                                 </tr>
                              </thead>
                              <tbody>
-                              <tr *ngFor="let transaction of transactionData?.data | paginate
+                              <tr *ngFor="let transaction of transactionData | paginate
                               : {
-                                  itemsPerPage: pagination?.perPage,
-                                  currentPage: pagination?.page,
-                                  totalItems: pagination?.total,
+                                  itemsPerPage: pagination.perPage,
+                                  currentPage: pagination.page,
+                                  totalItems: pagination.total,
                                   id: 'listTransactionFull'
                                 };
                           index as i">
@@ -131,6 +131,24 @@
         </div>
         <!-- end row -->
      </div>
+     <div class="modal-footer">
+      <div class="row" style="width: 100%;">
+        <div class="col-sm-12 col-md-5">
+          <div class="dataTables_info">Mostrando de {{this.pagination.page}} a
+            {{this.pagination?.perPage}} de
+            {{this.pagination?.total}} Registos
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-7">
+          <div class="pull-right">
+            <pagination-controls (pageChange)="getPageFilterData($event);" previousLabel="Anterior" maxSize="6"
+              id="listTransactionFull" nextLabel="Proximo" directionLinks="true" responsive="true">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+
      <!-- footer -->
      <div class="container-fluid">
         <div class="row">
