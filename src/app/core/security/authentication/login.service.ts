@@ -19,8 +19,8 @@ export class LoginService {
    *
    * Descricao: recebe 2 parametros retorna um data
    */
-  public login(username, password) {
-    return this.api.post('security/auth/login', { username, password }, false).pipe(
+  public login(email, password) {
+    return this.api.post('security/auth/login', { email, password }, false).pipe(
       finalize(() => {}),
       map((response) => {
         const data = response.data;
