@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     let email: string = this.f.email.value
-    if (email.endsWith('@isaf.co.ao')) {
+    if (!email.endsWith('@isaf.co.ao')) {
     this.toasterService.warning(`'O email não faz parte do dominio isaf!'`, 'Aviso');
       return 
     }
