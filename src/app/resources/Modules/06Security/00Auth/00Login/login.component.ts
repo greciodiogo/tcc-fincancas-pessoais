@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {finalize, first} from 'rxjs/operators';
 import { LoginService } from '@core/security/authentication/login.service';
 import { AuthService } from '@app/core/security/authentication/auth.service';
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, this.emailDomainValidator]],
       password: ['', Validators.required]
     });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
@@ -47,6 +47,16 @@ export class LoginComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
+
+  emailDomainValidator(control: AbstractControl): ValidationErrors | null {
+    const email: string = control.value;
+    if (email && !email.endsWith('@isaf.co.ao')) {
+      return { invalidDomain: true }; // Se o domínio estiver incorreto, retorna um erro
+    }
+
+    return null; // Sem erro
+  }
+
 
   public autenticate() {
 
