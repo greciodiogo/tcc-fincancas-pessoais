@@ -12,8 +12,11 @@
                  <fieldset>
                     <div class="field">
                        <label class="label_field">Email</label>
-                       <input type="email" name="email" placeholder="E-mail" formControlName="email" required
+                       <input type="email" name="email" placeholder="E-mail" minlength="3" formControlName="email" required
                        [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'is-valid': f.email.touched && !f.email.errors }"/>
+                       <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                        <div *ngIf="f['email'].errors.required">O campo email deve ser valido</div>
+                      </div>
                     </div>
                     <div class="field">
                        <label class="label_field">Palavra-Passe</label>

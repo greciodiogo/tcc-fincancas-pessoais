@@ -14,11 +14,11 @@
                     <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
                     <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
                 </ul> -->
-                <ul class="user_profile_dd">
+                <ul class="user_profile_dd" *ngIf="this.authenticated?.user?.id">
                     <li>
                       <a class="dropdown-toggle" data-toggle="dropdown">
                         <img class="img-responsive rounded-circle" src="https://avatar.iran.liara.run/username?username={{ this.authenticated?.user?.nome || 'unknown'}}" alt="">
-                        <span class="name_user">Admin</span></a>
+                        <span class="name_user">Estudante</span></a>
                       <div class="dropdown-menu">
                           <!-- <a class="dropdown-item" href="profile.html">My Profile</a> -->
                           <!-- <a class="dropdown-item" href="settings.html">Settings</a> -->

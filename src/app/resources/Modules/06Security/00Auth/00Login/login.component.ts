@@ -4,6 +4,7 @@ import {AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidationErrors,
 import {finalize, first} from 'rxjs/operators';
 import { LoginService } from '@core/security/authentication/login.service';
 import { AuthService } from '@app/core/security/authentication/auth.service';
+import { ToastrService } from 'ngx-toastr';
 //import {ToasterConfig, ToasterService} from 'angular2-toaster';
 
 @Component({
@@ -25,9 +26,11 @@ export class LoginComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     public auth: AuthService,
     public login: LoginService,
+    public toasterService: ToastrService,
     private router: Router,
     private route: ActivatedRoute, 
   ) {
+    this.createForm();
     if (this.auth.isAuthenticated()) {
       this.router.navigate(['/']);
     }
@@ -35,28 +38,21 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, this.emailDomainValidator]],
-      password: ['', Validators.required]
-    });
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     // get return url from route parameters or default to '/'
+  }
+
+  createForm() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required]],
+      password: ['', Validators.required]    
+    });
   }
 
   // convenience getter for easy access to form fields
   get f() {
     return this.loginForm.controls;
   }
-
-  emailDomainValidator(control: AbstractControl): ValidationErrors | null {
-    const email: string = control.value;
-    if (email && !email.endsWith('@isaf.co.ao')) {
-      return { invalidDomain: true }; // Se o domínio estiver incorreto, retorna um erro
-    }
-
-    return null; // Sem erro
-  }
-
 
   public autenticate() {
 
@@ -65,6 +61,11 @@ export class LoginComponent implements OnInit {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
+    }
+    let email: string = this.f.email.value
+    if (email.endsWith('@isaf.co.ao')) {
+    this.toasterService.warning(`'O email não faz parte do dominio isaf!'`, 'Aviso');
+      return 
     }
 
     this.loading = true;
