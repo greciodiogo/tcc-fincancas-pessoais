@@ -13,8 +13,7 @@ import { DashboardService } from "@app/shared/services/dashboard.service";
 import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
 import { first } from "rxjs/operators";
-import { MetasService } from "../../07Metas/services/metas.service";
-
+import { UserService } from "../../06Security/02Users/services/user.service";
 
 @Component({
   selector: 'app-perfil',
@@ -23,7 +22,7 @@ import { MetasService } from "../../07Metas/services/metas.service";
 })
 export class PerfilComponent {
 
-  public moneyControlForm: UntypedFormGroup;
+  public userDataForm: FormGroup;
   public loading: boolean = false;
   public submitted = false;
   public disabledButton = false
@@ -37,10 +36,17 @@ export class PerfilComponent {
     categorias: []
   }
 
+  public infoDadosUser = JSON.parse(localStorage?.getItem('accessToken'));
+  antiga_password = this.infoDadosUser.user.password;
+
+  
+  public showPassword: boolean;
+  public showPassword2: boolean;
+
   constructor(
     public configService: FnService,
     public formBuilder: UntypedFormBuilder,
-    public metasService: MetasService,
+    public userService: UserService,
     public dashboardService: DashboardService,
     private store: Store
   ) {
@@ -48,45 +54,48 @@ export class PerfilComponent {
   }
 
   ngOnInit() {
+    this.userDataForm.patchValue({...this.infoDadosUser.user})
   }
 
   createForm() {
-    this.moneyControlForm = this.formBuilder.group({
+    this.userDataForm = this.formBuilder.group({
       id: [{ value: null, disabled: true }],
-      titulo: [null, Validators.required],
-      descricao: [null, Validators.required],
-      valorPretendido: [null],
-      created_at: [null],
-      data_conclusao: [null],
+      nome: [null, Validators.required],
+      email: [null, Validators.required],
+      morada: [null],
+      telefone: [null, Validators.required],
+      username: [null, Validators.required],
+      password: [null, Validators.required],
     });
   }
 
   get f() {
-    return this.moneyControlForm.controls;
+    return this.userDataForm.controls;
   }
 
   onReset() {
     this.submitted = false;
-    this.moneyControlForm.reset();
+    this.userDataForm.reset();
     this.close.emit();
   }
 
   onSubmit() {
     this.submitted = true;
 
-    if (this.moneyControlForm.invalid) {
+    if (this.userDataForm.invalid) {
       return;
     }
 
+
     this.loading = true;
-    const id = this.moneyControlForm.getRawValue().id;
+    const id = this.userDataForm.getRawValue().id;
     // TODO: usado para fazer a requisição com a api de criação de objsct or update
-    this.createOrEdit(this.moneyControlForm, id === null ? true : false, id);
+    this.createOrEdit(this.userDataForm, id === null ? true : false, id);
   }
 
   createOrEdit(formulario: FormGroup, isCreate: boolean = true, id) {
     // TODO: usado para fazer a requisição com a api de criação de object
-    this.metasService
+    this.userService
       .storeOrUpdate(formulario.value, id)
       .pipe(first())
       .subscribe(
@@ -96,8 +105,13 @@ export class PerfilComponent {
           if (isCreate) {
             formulario.reset();
           }
+          const payload = { 
+            ...this.infoDadosUser, 
+            ...formulario.value
+          }
+        localStorage.setItem('accessToken', JSON.stringify(payload));
+
           this.loadList.emit(Object(response).data);
-          this.closeModal.nativeElement.click();
         },
 
         (error) => {

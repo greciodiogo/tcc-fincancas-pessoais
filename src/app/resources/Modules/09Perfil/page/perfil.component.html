@@ -3,20 +3,20 @@
       <div class="inner_container">
         <!-- right content -->
         <div id="content">
-            <div class="midde_cont">
-              <div class="container-fluid">
-                <div class="row column_title">
-                    <div class="col-md-12">
-                      <div class="page_title">
-                          <h2>Perfil</h2>
-                      </div>
-                    </div>
-                </div>
 
-                <div class="midde_cont">
-                    
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
+
+          <div class="midde_cont">
+            <div class="container-fluid">
+               <div class="row column_title">
+                  <div class="col-md-12">
+                     <div class="page_title">
+                        <h2>Perfil</h2>
+                     </div>
+                  </div>
+               </div>
+
+                <div class="row column1">
+                    <div class="col-md-8" style="margin: 0 auto;">
                         <div class="white_shd full margin_bottom_30">
                             <div class="full graph_head">
                           <div class="heading1 margin_0">
@@ -25,8 +25,94 @@
                         </div>
                         <div class="full price_table padding_infor_info">
                             <div class="row">
-                                <input type="text">
-                                <button>Salvar configurações</button>
+                              <div class="col-lg-">
+                              <div class="user-details-tab">
+                              <!-- [formGroup]="resetPasswordForm" -->
+                                <form [formGroup]="userDataForm" (submit)="onSubmit();">
+                                  <div class="" style="display: flex; align-items: center; gap: 20px; width: 100%;">
+                                    <div class="user-details-tab-item">
+                                      <div class="form-group has-warning">
+                                        <label style="color:#808080c7 !important" class="col-form-label" for="name">Nome</label>&nbsp;
+                                        <label style="color: #f44336" class="mr-2">*</label>
+                                        <input class="form-control" style="border-radius: 12px !important;padding:1.5rem !important;margin-top: 10px;" required autofocus id="nome" type="text" formControlName="nome"
+                                          placeholder="Nome" autocomplete="given-name" 
+                                          />
+                                        <div *ngIf="submitted && f['nome'].errors" class="invalid-feedback">
+                                          <div *ngIf="f['nome'].errors.required">O campo Nome é obrigatório</div>
+                                        </div>
+                                      </div>
+                                    </div>  
+                                                                         
+                                    <div class="user-details-tab-item">
+                                      <div class="form-group has-warning">
+                                        <label style="color:#808080c7 !important" class="col-form-label" for="name"> Email</label>&nbsp;
+                                        <label style="color: #f44336" class="mr-2">*</label>
+                                        <input class="form-control" style="border-radius: 12px !important;padding:1.5rem !important;margin-top: 10px;" required id="email" type="email" formControlName="email"
+                                          placeholder="divaldo@isaf.co.ao"  autocomplete="given-name" minlength="8" 
+                                          [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'is-valid': f.email.touched && !f.email.errors }">
+                                          <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                          <div *ngIf="f['email'].errors.required">O campo Email é obrigatório</div>
+                                        </div>
+                                      </div>
+                                    </div>       
+                                  </div>
+                                  <div class="" style="display: flex; align-items: center; gap: 20px; width: 100%;">
+                                    <div class="user-details-tab-item">
+                                      <div class="form-group has-warning">
+                                        <label style="color:#808080c7 !important" class="col-form-label" for="name"> Telefone</label>&nbsp;
+                                        <input class="form-control" style="border-radius: 12px !important;padding:1.5rem !important;margin-top: 10px;" required autofocus id="telefone" type="number" formControlName="telefone"
+                                          placeholder="ex: 923 323 321" autocomplete="given-name" />
+                                        </div>
+                                    </div>     
+                                                                             
+                                    <div class="user-details-tab-item">
+                                      <div class="form-group has-warning">
+                                        <label style="color:#808080c7 !important" class="col-form-label" for="name">Morada</label>&nbsp;
+                                        <input class="form-control" style="border-radius: 12px !important;padding:1.5rem !important;margin-top: 10px;" id="morada" type="text" formControlName="morada"
+                                          placeholder="morada" autocomplete="given-name"/>
+                                      </div>
+                                    </div>  
+
+                                  </div>
+                                  <div class="" style="display: flex; align-items: center; gap: 20px; width: 100%;">
+                                                                           
+                                    <div class="user-details-tab-item">
+                                      <div class="form-group has-warning">
+                                        <label style="color:#808080c7 !important" class="col-form-label" for="name"> Username</label>&nbsp;
+                                        <label style="color: #f44336" class="mr-2">*</label>
+                                        <input class="form-control" style="border-radius: 12px !important;padding:1.5rem !important;margin-top: 10px;" required id="username" formControlName="username"
+                                          placeholder="ex.: isaf123" autocomplete="given-name" minlength="4"
+                                          [ngClass]="{ 'is-invalid': submitted && f.username.errors, 'is-valid': f.username.touched && !f.username.errors }">                                        
+                                          <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                                          <div *ngIf="f['username'].errors.required">O campo Username é obrigatório</div>
+                                        </div>
+                                      </div>
+                                    </div>   
+
+                                    <div class="user-details-tab-item">
+                                      <div class="form-group has-warning">
+                                        <label style="color:#808080c7 !important" class="col-form-label" for="name"> Palavra Passe</label>&nbsp;
+                                        <label style="color: #f44336" class="mr-2">*</label>
+                                        <input class="form-control" style="border-radius: 12px !important;padding:1.5rem !important;margin-top: 10px;" required autofocus id="password" type="password" formControlName="password"
+                                          placeholder="palavra passe" autocomplete="given-name" 
+                                          [ngClass]="{ 'is-invalid': submitted && f.password.errors, 'is-valid': f.password.touched && !f.password.errors }">                                        
+                                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                          <div *ngIf="f['password'].errors.required">O campo Palavra-passe antiga é obrigatório</div>
+                                        </div>
+                                      </div>
+                                    </div>     
+                                  </div>
+                                  <div class="col-md-12" style="margin-top: 20px;">
+                                    <div class="pull-right">
+                                      <button class="btn-preview" type="submit" 
+                                        data-style="expand-left">Actualizar Dados
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                                
+                              </div>
+                            </div>
                             </div>
                         </div>
                     </div>
