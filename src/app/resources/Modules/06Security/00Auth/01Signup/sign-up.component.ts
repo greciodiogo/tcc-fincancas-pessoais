@@ -98,7 +98,7 @@ export class SignUpComponent implements OnInit {
     }
     
     let senha: string = this.f.password.value
-    if (senha.length >= 8) {
+    if (senha.length < 8) {
     this.toasterService.warning(`'A senha deve ter no minimo 8 caracteres!'`, 'Aviso');
       return 
     }
