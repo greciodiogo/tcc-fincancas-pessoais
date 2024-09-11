@@ -96,6 +96,12 @@ export class SignUpComponent implements OnInit {
     this.toasterService.warning(`'O email não faz parte do dominio isaf!'`, 'Aviso');
       return 
     }
+    
+    let senha: string = this.f.password.value
+    if (senha.length >= 8) {
+    this.toasterService.warning(`'A senha deve ter no minimo 8 caracteres!'`, 'Aviso');
+      return 
+    }
 
     this.loading = true;
     this.authenticationService.signup(this.signupForm.value)
