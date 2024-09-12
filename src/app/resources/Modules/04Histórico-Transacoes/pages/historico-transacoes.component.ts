@@ -123,7 +123,7 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
 
     var httpParams = new HttpParams()
       .set("page", (this.pagination.page || 1).toString())
-      .set("perPage", (this.pagination.total || 1000 ).toString())
+      .set("perPage", (this.pagination.perPage || 10 ).toString())
       .set("search", this.filter.search.toString())
       .set("orderBy", this.filter.orderBy.toString())
       .set("typeOrderBy", this.filter.typeOrderBy.toString())
@@ -147,9 +147,9 @@ export class HistoricoTransacoesComponent implements OnInit, OnDestroy {
     if (this.pagination.perPage == null) {
       return;
     }
-    console.log(page)
     this.pagination.page = page;
     this.subjectObj.next(this.pagination.page);
+    this.listTransactions()
   }
 
   public transaction

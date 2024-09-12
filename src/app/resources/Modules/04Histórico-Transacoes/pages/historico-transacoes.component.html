@@ -86,9 +86,9 @@
                              <tbody>
                               <tr *ngFor="let transaction of transactionData | paginate
                               : {
-                                  itemsPerPage: pagination.perPage,
-                                  currentPage: pagination.page,
-                                  totalItems: pagination.total,
+                                  itemsPerPage: this.pagination.perPage,
+                                  currentPage: this.pagination.page,
+                                  totalItems: this.pagination.total,
                                   id: 'listTransactionFull'
                                 };
                           index as i">
@@ -153,7 +153,7 @@
      <div class="container-fluid">
         <div class="row">
            <div class="footer">
-              <p>Copyright ©2024 Designed by html.design. All rights reserved.</p>
+              <p>this.Copyright ©2024 Designed by html.design. All rights reserved.</p>
            </div>
         </div>
      </div>
